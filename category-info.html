@@ -10,6 +10,12 @@
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+<!-- LOGIN DE GOOGLE, CODIGO NECESARIO -->
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="767381471646-77gqc6nf7c9006qe3qie40oqiu56acf4.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
@@ -18,11 +24,30 @@
 <body>
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
-      <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
-      <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
-      <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
-      <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+      <a class="py-3 d-none d-md-inline-block" href="index.html">Inicio</a>
+      <a class="py-3 d-none d-md-inline-block" href="categories.html">Categorías</a>
+      <a class="py-3 d-none d-md-inline-block" href="products.html">Productos</a>
+      <a class="py-3 d-none d-md-inline-block" href="sell.html">Vender</a>
+      <!-- <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a> -->
+
+      <div class="btn-group py-1 d-none d-md-inline-block">
+        <button type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div class="user-data-container">
+            <div class="profile-img-container round-10px">
+              <img id="profile-img" src="/img/default_prof_img.jpg" alt="">
+            </div>
+            <span class="dropdown-toggle profile-user-name">Nombre de Usuario</span>
+          </div>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right with100">
+          <button id="profile-lnk" class="dropdown-item" type="button">Perfil</button>
+          <button id="cart-lnk" class="dropdown-item" type="button">Carrito</button>
+          <div class="dropdown-divider"></div>
+          <button id="logout-lnk" class="dropdown-item" type="button">Desconectar</button>
+        </div>
+      </div>
+
+
     </div>
   </nav>
   <main role="main">
@@ -79,6 +104,9 @@
   </div>
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/check_login.js"></script>
+
   <script src="js/init.js"></script>
   <script src="js/category-info.js"></script>
 </body>

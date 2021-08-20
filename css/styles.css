@@ -247,3 +247,48 @@ a.custom-card:hover {
   height: 1.2em;
   background: linear-gradient(to right, rgba(246, 246, 246, 0), rgba(246, 246, 246, 1) 50%);
 } 
+
+.round-10px{
+  border-radius: 10px;
+}
+
+.profile-img-container{
+  display: inline-block;
+
+  padding: 0px;
+  margin: 0px;
+  margin-right: 10px;
+  
+  width: 35px;
+  height: 35px;
+
+  overflow: hidden;
+
+  /* border-style: solid;
+  border-width: 1px; */
+}
+
+.profile-img-container img{
+  width: 100%;
+  height: 100%;
+}
+
+.user-data-container{
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+}
+
+.with100{
+  min-width: 100%;
+}
+
+.logout-btn{
+  color:rgb(0, 0, 0);
+  background-color: rgb(246, 144, 144);
+}
+
+.logout-btn:hover{
+  color:white;
+  background-color: rgb(221, 72, 72);
+}

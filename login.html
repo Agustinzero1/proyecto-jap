@@ -8,11 +8,21 @@
   <meta name="description" content="">
   <title>eMercado - Todo lo que busques está aquí</title>
 
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  
+  <!-- LOGIN DE GOOGLE, CODIGO NECESARIO -->
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="767381471646-77gqc6nf7c9006qe3qie40oqiu56acf4.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+  
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/login.css" rel="stylesheet">
+
   <style>
     html, body{
       height: 100%;
@@ -35,19 +45,70 @@
       margin: auto;
     }
   </style>
+
 </head>
 
-<body class="text-center">
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 1 (Fecha de entrega: 08/08/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+<body class="">
+
+  <div class="fondo-login"></div>
+
+  <div class="login-container">
+    <div id="logreg-forms" class="login-form text-center" >
+      <img src="./img/login-color-transparente.png" alt="" style="width: 100%;">
+      <form class="form-signin" onsubmit="login_Cuenta_eMercado(inputUser.value, inputPassword.value);">
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Iniciar Sesión</h1>
+        
+        <div class="social-login">
+          <div class="g-signin2 btn custome-btn" data-onsuccess="onSignIn" data-theme="dark" ></div>
+          <div class="g-signin2 btn custome-btn" data-onsuccess="onSignIn" data-theme="dark" ></div>
+        </div>
+        <p style="text-align:center">O usar una cuenta de e-Mercado  </p>
+        
+        <input type="text" id="inputUser" class="form-control round-10px" style="margin-bottom: 3px;" placeholder="Nombre de Usuario" required="" autofocus="">
+        <input type="password" id="inputPassword" class="form-control round-10px" placeholder="Contraseña" required="">
+  
+        <button class="btn btn-success btn-block round-10px" type="submit"><i class="fas fa-sign-in-alt round-10px"></i>Iniciar Sesión</button>
+        <a href="#" id="forgot_pswd">Necesitas restablecer la contraseña?</a>
+        <hr>
+        <!-- <p>Don't have an account!</p>  -->
+        <button class="btn btn-primary btn-block round-10px" type="button" id="btn-signup"><i class="fas fa-user-plus"></i>Crear cuenta de e-Mercado</button>
+      </form>
+  
+      <form action="#" class="form-reset">
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Restablecer contraseña</h1>
+        <input type="email" id="resetEmail" class="form-control round-10px" placeholder="Dirección de Email" required="" autofocus="">
+        <button class="btn btn-primary btn-block round-10px" type="submit">Restablecer contraseña</button>
+        <a href="#" id="cancel_reset"><i class="fas fa-angle-left"></i> Volver</a>
+      </form>
+          
+      <form action="#" class="form-signup">
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Crear cuenta e-Mercado</h1>
+  
+        <br>
+        
+        <input type="text" id="user-name" class="form-control round-10px" placeholder="Nombre de usuario" required="" autofocus="">
+        <p class="font-weight-normal text-muted" style="text-align: center">(este es el nombre con el que te mostramos a los demas usuarios)</p>
+  
+        <br>
+  
+        <h5 class="h5 mb-3 font-weight-normal text-muted" style="text-align: center">Datos Privados</h5>
+        <p class="font-weight-normal text-muted" style="text-align: center">(estos datos no se muestran a los demas usuarios)</p>
+        <input type="text" id="user-full-name" class="form-control round-10px" placeholder="Nombre completo" required="" autofocus="">
+        <input type="email" id="user-email" class="form-control round-10px" placeholder="Dirección de Email" required autofocus="">
+        <input type="password" id="user-pass" class="form-control round-10px" placeholder="Contraseña" required autofocus="">
+        <input type="password" id="user-repeatpass" class="form-control round-10px" placeholder="Repetir contraseña" required autofocus="">
+  
+        <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i>Crear cuenta</button>
+        <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Volver</a>
+      </form>
+  
     </div>
   </div>
+  
+
 
   <script src="js/init.js"></script>
+  <script src="js/login_ui.js"></script>
   <script src="js/login.js"></script>
 </body>
 </html>
