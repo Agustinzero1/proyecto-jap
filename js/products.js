@@ -75,8 +75,7 @@ function showProductsList(){
             ((maxPrice == undefined) || (maxPrice != undefined && parseInt(product.cost) <= maxPrice))){
 
             htmlContentToAppend += 
-            `
-            <a href="product-info.html" class="card mb-4 custom-card custome-prod-card" ondragstart="return false;" ondrop="return false;">
+            `<a href="product-info.html" class="card mb-4 custom-card custome-prod-card" ondragstart="return false;" ondrop="return false;">
                 
                 <img class="card-img-top" src="${product.imgSrc}" alt="${product.description}">
                 
@@ -87,12 +86,10 @@ function showProductsList(){
                     <p class="card-text bottom-text"><small class="text-muted">${product.soldCount} vendidos</small></p>
                 </div>
             
-            </a>
-            `
-            
+            </a>`
         }
-
-        document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
+        
+        document.getElementById("prod-list-container").innerHTML = htmlContentToAppend;
     }
 }
 
