@@ -1,4 +1,5 @@
 
+
 //se dispara al cargar la pagina para recuperar los datos de OAuth 2.0 de google
 function onLoad() {
     gapi.load('auth2', function() {
@@ -33,21 +34,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 
     }
 
-    //document.getElementById("logOut").addEventListener('click', function(e){
-    //    signOut();
-    //    localStorage.clear();
-    //
-    //    alert('Usuario desconectado'); 
-    //
-    //    location.href='index.html';
-    //});
-
-    document.getElementsByClassName("g-signin2")[0].style = "height:50px;width:180px;"
-    document.getElementsByClassName("g-signin2")[1].style = "height:50px;width:180px;"
-
-    // document.getElementById("facebook-btn").addEventListener('click', function(e){
-    //     console.log("facebook-btn")
-    // });
+    document.getElementsByClassName("g-signin2")[0].style = "height:50px;width:200px;"
     
 });
 
