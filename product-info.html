@@ -19,6 +19,10 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+
 </head>
 
 <body>
@@ -50,14 +54,146 @@
 
     </div>
   </nav>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 3 (Fecha de entrega: 19/09/2021) y Entrega 4 (Fecha de entrega: 03/10/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  
+  <main role="main" class="pb-5">
+    <div class="row">
+      
+      <div class="container">
+        <div class="row">
+
+          <!-- galeria de imagenes -->
+          <div class="col-sm gal-container">
+
+            <div class="gal-img">
+              <div class="img-selected">
+                <img class="gal-img-elem" src="img/image-placeholder.png">
+              </div>
+        
+              <div class="gal-list scrollBar">
+        
+                 <!-- imagen placeholder -->
+                <div class="gal-tumb">
+                  <img class="gal-img-elem" src="img/image-placeholder.png">
+                </div>
+                
+              </div>
+             </div>
+
+          </div>
+
+          <div class="separador d-none d-md-none d-lg-block d-xl-block">
+          </div>
+
+          <div class="w-100 d-none d-md-block d-lg-none d-xl-none"><div class="separador-horizontal "></div></div>
+
+          <!-- datos del producto -->
+          <div class="col-sm">
+            <div class="prod-data">
+
+              <div>
+                <span class="h6 category-prod-info-text">Categoría - test</span>
+              </div>
+
+              <div>
+                <span class="h3 name-prod-info-text">Product Name</span>
+              </div>
+
+              <div class="stars-container">
+                <div class="ratingDiv notHover" id="prod-info-score">
+                  <span name="star5">★</span>
+                  <span name="star4">★</span>
+                  <span name="star3">★</span>
+                  <span name="star2">★</span>
+                  <span name="star1">★</span>
+                </div>
+                <div>
+                  <span class="prod-info-score-text">0.0</span>
+                </div>
+              </div>
+
+
+              <br class="d-none d-md-none d-lg-none d-xl-block">
+
+              <div>
+                <span class="h4 text-success font-weight-bold price-prod-info-text">USD 13000</span>
+              </div>
+      
+              <br class="d-none d-md-none d-lg-none d-xl-block">
+
+              <div>
+                <span class=" soldCount-prod-info-text">20 vendidos</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="separador d-none d-md-none d-lg-block d-xl-block"></div>
+
+          <div class="w-100"><div class="separador-horizontal "></div></div>
+          
+          <!-- descripcion del producto -->
+          <div class="col-sm">
+
+            <div class="desc-prod-info">
+              <span class="desc-prod-info-text font-weight-normal">descripcion Lorem ipsum dolor sit amet consectetur adipisicing elit. Est iusto magnam earum eos sapiente necessitatibus totam pariatur molestiae, perferendis molestias et reiciendis tempora voluptas, excepturi aut fuga omnis odio. Delectus!</span> 
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="w-100"><div class="separador-horizontal "></div></div>
+
+        <div class="row">
+          <div class="col-sm" id="new-comment">
+            <div class="comment">
+              <div class="ratingDiv">
+                  <span name="star5">★</span>
+                  <span name="star4">★</span>
+                  <span name="star3">★</span>
+                  <span name="star2">★</span>
+                  <span name="star1">★</span>
+              </div>
+
+              <span class="com-user-name">
+                Usuario
+              </span>
+      
+              <br>
+      
+              <p class="com-user-desc">
+                  <textarea  class="form-control" name="comment-textarea" id="comment-textarea" rows="5"></textarea>
+              </p>
+      
+              <div class="comment-dateButton">
+                <!-- <div class="com-user-date">
+                  fecha
+                </div> -->
+
+                <button type="button" class="btn btn-primary btn-comentar">
+                  Comentar
+                </button>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="w-100"><div class="separador-horizontal "></div></div>
+        
+        <!-- comentarios del producto -->
+        <div class="row">
+          <div class="col-sm" id="comments-block">
+          </div>
+        </div>
+
+        <div class="w-100"><div class="separador-horizontal "></div></div>
+
+      </div>
+        
     </div>
-  </div>
+
+  </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">
@@ -75,13 +211,13 @@
       <div></div>
     </div>
   </div>
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
 
   <script src="js/check_login.js"></script>
 
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
+
+
 </body>
 
 </html>

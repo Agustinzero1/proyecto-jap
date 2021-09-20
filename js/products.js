@@ -117,6 +117,7 @@ function showProductsList(){
                 </a>`
             }
             
+
         }
         
         document.getElementById("prod-list-container").innerHTML = htmlContentToAppend;
