@@ -59,27 +59,35 @@
     <div class="row">
       
       <div class="container">
+        <br>
         <div class="row">
 
           <!-- galeria de imagenes -->
           <div class="col-sm gal-container">
 
-            <div class="gal-img">
-              <div class="img-selected">
-                <img class="gal-img-elem" src="img/image-placeholder.png">
-              </div>
-        
-              <div class="gal-list scrollBar">
-        
-                 <!-- imagen placeholder -->
-                <div class="gal-tumb">
-                  <img class="gal-img-elem" src="img/image-placeholder.png">
-                </div>
-                
-              </div>
-             </div>
+            <div id="img-gal" class="carousel slide" data-ride="carousel" 
+              data-interval=2000 data-wrap=true data-pause="hover">
 
-          </div>
+              <ol class="carousel-indicators">
+              
+              </ol>
+
+              <div class="carousel-inner">
+
+                </div>
+              </div>
+
+              <a class="carousel-control-prev " href="#img-gal" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon back-shadow" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+
+              <a class="carousel-control-next " href="#img-gal" role="button" data-slide="next">
+                <span class="carousel-control-next-icon back-shadow" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+
+            </div>
 
           <div class="separador d-none d-md-none d-lg-block d-xl-block">
           </div>
@@ -138,7 +146,15 @@
             </div>
 
           </div>
-
+          
+          <div class="w-100"><div class="separador-horizontal "></div></div>
+          
+          <div class="container">
+            <span class="related-prod-title">Productos Relacionados</span>
+            <div class="row" id="prod-list-container" style="justify-content: center;">
+            
+            </div>
+          </div>
         </div>
 
         <div class="w-100"><div class="separador-horizontal "></div></div>

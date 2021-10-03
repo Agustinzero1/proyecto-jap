@@ -1,5 +1,3 @@
-
-
 //se dispara al cargar la pagina para recuperar los datos de OAuth 2.0 de google
 function onLoad() {
     gapi.load('auth2', function() {
