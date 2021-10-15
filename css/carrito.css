@@ -1,0 +1,151 @@
+:root{
+    --border-color: rgb(199, 199, 199);
+}
+
+.bordeRedondeado{
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--border-color);
+    margin: 10px;
+
+    box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.3);
+}
+
+.bordeRedondeado2{
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--border-color);
+    margin-right: 10px;
+}
+
+table{
+    width: 100%;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.carrito-block{
+    width: 100%;
+}
+
+.total-block{
+    min-width: 30%;
+    width: 100%;
+}
+
+.th-style{
+    padding: 5px;
+}
+
+.td-bottom-line{
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color:  var(--border-color);
+}
+
+.td-right-line{
+    border-right-style: solid;
+    border-right-width: 2px;
+    border-right-color:  var(--border-color);
+}
+
+.td-left-line{
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-left-color:  var(--border-color);
+}
+
+.product-img{
+    margin: 5px;
+
+    width: 90px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-img img{
+    max-width: 100%;
+    max-height: 100%;
+
+    border-radius: 10px;
+}
+
+.cant-unidades input{
+    width: 60px;
+}
+
+.precio{
+    text-align: right;
+    padding-right: 10px;
+}
+
+.tr-producto{
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color:  var(--border-color);
+}
+
+.tr-producto:last-of-type{
+    border-bottom-style: none;
+    border-bottom-width: 2px;
+    border-bottom-color:  var(--border-color);
+}
+
+.titulo-compra{
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.titulo-carrito{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.cost-total{
+    font-size: large;
+    font-weight: 700;
+}
+
+.cost-data th{
+    text-align: center;
+}
+
+.cost-data td{
+    text-align: right;
+    padding-left: 20px;
+}
+
+.cost-data{
+    width: auto;
+}
+
+.cost-data-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-right: 10px;
+}
+
+.comprar-container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.comprar-btn{
+    width: 200px;
+    height: 50px;
+}
+
+.invalid-feedback.envio-err{
+    font-size: medium;
+}

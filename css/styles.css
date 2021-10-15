@@ -297,10 +297,12 @@ a.custom-card:hover {
 /* ESTRELLAS DE PUNUTUACION */
 
 .prod-info-score-text{
-  margin-left: 10px;
-
+  position: relative;
+  
+  right: -15px;
+  
   font-weight: 500;
-  font-size: 1.7em;
+  font-size: 1.6em;
   color: rgb(255, 123, 0);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -317,6 +319,7 @@ a.custom-card:hover {
   direction: rtl;
   color: rgb(230, 229, 219);
   text-shadow:1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+
 }
 
 .ratingDiv > span {
@@ -446,6 +449,29 @@ a.custom-card:hover {
   min-width: 75%;
 }
 
+.redondeado{
+  box-sizing: border-box;
+
+  border-radius: 10px;
+  
+  border-color: rgb(210, 210, 210);
+  border-width: 2px;
+  border-style: solid;
+  
+  background-color: rgb(245, 245, 245);
+
+
+  --margen: 12px;
+
+  margin-left: var(--margen);
+  margin-right: var(--margen);
+}
+
+#img-gal{
+  border-radius: 10px;
+  overflow: hidden;
+}
+
 .gal-img{
   display: flex;
   flex-direction: column;
@@ -546,7 +572,6 @@ a.custom-card:hover {
 
   --margen: 10px;
 
-  margin: -10px;
   margin-top: var(--margen);
   margin-bottom: var(--margen);
 
@@ -558,8 +583,7 @@ a.custom-card:hover {
   border-bottom-style: solid;
 
   --margen: 10px;
-
-  margin: -20px;
+  
   margin-top: var(--margen);
   margin-bottom: var(--margen);
 
