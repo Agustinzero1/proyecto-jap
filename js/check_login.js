@@ -37,6 +37,10 @@ function remove_user_data_and_go_to_login(){
     localStorage.removeItem("password");
 
     location.href = "login.html"; // voy al menu principal
+
+    if(localStorage.getItem("user_data") != null){
+        localStorage.removeItem("user_data");
+    }
 }
 
 /** - Carga las funciones de los botones del desplegable del usuario */

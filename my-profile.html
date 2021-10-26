@@ -35,6 +35,7 @@
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+  <link href="css/profile.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
 </head>
 
@@ -68,18 +69,76 @@
     </div>
   </nav>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 6 (Fecha de entrega: 31/10/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+
+    <div class="col data-block bordeRedondeado">
+
+      <h3 class="text-center">Mi Perfil</h3>
+
+      <div class="img-profile-container">
+        <div class="bordeRedondeado2">
+          
+          <img class="profile-img no-drageable" src="/img/default_prof_img.jpg" alt="">
+          <div class="boton-cambiar-img">CAMBIAR</div>
+
+          <input class="profile-img-loader" type="file" accept="image/png, image/jpeg">
+        
+        </div>
+      </div>
+
+      <br>
+      
+      <form id="datos-perfil">
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="input-nombre1">Nombre 1</label>
+            <input type="text" class="form-control" id="input-nombre1" placeholder="" >
+          </div>
+          <div class="form-group col-md-6">
+            <label for="input-nombre2">Nombre 2</label>
+            <input type="text" class="form-control" id="input-nombre2" placeholder="">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="input-apellido1">Apellido 1</label>
+            <input type="text" class="form-control" id="input-apellido1" placeholder="" >
+          </div>
+          <div class="form-group col-md-6">
+            <label for="input-apellido2">Apellido 2</label>
+            <input type="text" class="form-control" id="input-apellido2" placeholder="">
+          </div>
+        </div>
+
+        <br>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="input-email">Email</label>
+            <input type="email" class="form-control" id="input-email" placeholder="" >
+          </div>
+          <div class="form-group col-md-4">
+            <label for="input-telefono">Telefono</label>
+            <input type="tel" class="form-control" id="input-telefono" placeholder="">
+          </div>
+          <div class="form-group col-md-2">
+            <label for="input-edad">Edad</label>
+            <input type="number" class="form-control" id="input-edad" placeholder="" >
+          </div>
+        </div>
+        
+        <br>
+
+        <div class="guardar-cambios text-center">
+          <button type="submit" class="btn btn-primary guardar-btn">Guardar</button>
+        </div>
+        
+
+      </form>
     </div>
+
   </div>
-  <footer class="text-muted bg-light">
-    <div class="container">
-      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
-    </div>
   </footer>
   <div class="alert fade alert-success" role="alert" id="alertResult">
     <span id="resultSpan"></span>
