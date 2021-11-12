@@ -110,6 +110,10 @@
               Sub-total
             </td>
 
+            <td class="td-bottom-line">
+             
+            </td>
+
           </thead>
           <tbody class="lista-producto">
           </tbody>
@@ -118,48 +122,73 @@
       </div>
 
       <div class="col total-block bordeRedondeado">
-        <h4 class="titulo-compra">Compra</h4>
+        <h4 class="titulo-compra">Datos del envío</h4>
 
         <form id="datos-compra">
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="input-direccion">Dirección *</label>
-              <input type="text" class="form-control" id="input-direccion" placeholder="Calle1 123 Esq. Calle 2" required>
+              <input type="text" class="form-control" id="input-direccion" placeholder="" >
+              <div id="input-direccion-err" class="invalid-feedback envio-err ">* Debes ingresar una dirección</div>
             </div>
             <div class="form-group col-md-6">
               <label for="input-direccion2">Dirección 2 <span class="text-muted">(ej: apartamento)</span></label>
-              <input type="text" class="form-control" id="input-direccion2" placeholder="ap. 123">
+              <input type="text" class="form-control" id="input-direccion2" placeholder="">
             </div>
           </div>
           
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="input-pais">País*</label>
-              <input type="text" class="form-control" id="input-pais" placeholder="Uruguay" required>
+              <input type="text" class="form-control" id="input-pais" placeholder="" >
+              <div id="input-pais-err" class="invalid-feedback envio-err ">* Debes ingresar un país</div>
             </div>
             <div class="form-group col-md-4">
               <label for="input-ciudad">Ciudad*</label>
-              <input type="text" class="form-control" id="input-ciudad" placeholder="Montevideo" required>
+              <input type="text" class="form-control" id="input-ciudad" placeholder="" >
+              <div id="input-ciudad-err" class="invalid-feedback envio-err ">* Debes ingresar una ciudad</div>
             </div>
             <div class="form-group col-md-2">
               <label for="input-codPostal">Cod. Postal*</label>
-              <input type="text" class="form-control" id="input-codPostal" placeholder="11111" required>
+              <input type="text" class="form-control" id="input-codPostal" placeholder="" >
+              <div id="input-codPostal-err" class="invalid-feedback envio-err ">* Debes ingresar un codigo postal</div>
             </div>
           </div>
           <div class="form-group">
             <label for="input-codPostal">Seleccionar Envio</label>
-            <select class="custom-select envio-select" required>
+            <select class="custom-select envio-select" >
               <option value="0">Seleccionar Envio</option>
               <option value="1">Premium (2-5 días / costo 15% )</option>
               <option value="2">Express (5-8 días / Costo 7% )</option>
               <option value="3">Standard (12 a 15 días / Costo 5%)</option>
             </select>
-            <div id="envio-0" class="invalid-feedback envio-err d-block">* Debes Seleccionar un envio</div>
-            <div id="envio-1" class="invalid-feedback envio-err">* Premium (2-5 días) - Costo del 15% sobre el subtotal.</div>
-            <div id="envio-2" class="invalid-feedback envio-err">* Express (5-8 días) - Costo del 7% sobre el subtotal.</div>
-            <div id="envio-3" class="invalid-feedback envio-err">* Standard (12 a 15 días) - Costo del 5% sobre el subtotal.</div>
+            <div id="envio" class="invalid-feedback envio-err">* Debes Seleccionar un envio</div>
           </div>
+
+
+
+            <label for="input-metodo-pago-ui">Metodo de pago *</label>
+            <div class="form-row">
+              <div class="form-group col-md-12">
           
+                <div style="display: flex;">
+                  <div type="text" class="form-control text-unselectable" id="input-metodo-pago-ui" placeholder="" style="height: auto;">
+                    Ninguno
+                  </div>
+
+                  <button type="button" class="btn btn-secondary " data-toggle="modal" data-target="#pagoModal" style="height: auto;"> 
+                    Seleccionar
+                  </button>
+                </div>
+  
+
+                <input type="text" class="form-control" id="input-metodo-pago-ui-dummy" placeholder="" style="display: none;">
+                <div id="input-input-metodo-pago-ui-dummy-err" class="invalid-feedback envio-err ">* Debes ingresar un metodo de pago valido</div>
+              </div>
+            </div>
+            
+          <br>
+
           <div class="cost-data-container">
             <table class="cost-data">
               <tbody >
@@ -181,7 +210,7 @@
           </div>
           
           <div class="comprar-container">
-            <button type="submit" class="btn btn-primary comprar-btn">Comprar</button>
+            <button type="submit" class="btn btn-primary comprar-btn-carrito">Comprar</button>
           </div>
           
 
@@ -191,6 +220,230 @@
     </div>
   </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="pagoModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLabel">Metodo de Pago</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- MODAL BODY -->
+
+            <div class="form-group">
+              <label for="input-tipo-pago">Tipo de metodo de pago</label>
+              <select class="custom-select pago-select is-invalid">
+                <option value="x">Seleccionar Metodo</option>
+                <option value="0">Tarjeta de Credito</option>
+                <option value="1">Cuenta bancaria</option>
+              </select>
+              <div id="envio" class="invalid-feedback envio-err">* Debes Seleccionar un metodo de pago</div>
+            </div>
+            
+            <div id="tipo-tarjeta" class="opcion-pago desactivado">
+              <div class="form-row">
+                <div class="form-group col-md-8">
+                  <label for="input-card-name">Nombre *</label>
+                  <input type="text" class="form-control is-invalid" id="input-card-name" placeholder="">
+                  <div id="input-card-name-err" class="invalid-feedback envio-err ">* Debes ingresar el nombre del dueño de la tarjeta</div>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="input-card-expiration">Vencimiento </label>
+                  <input type="text" class="form-control is-invalid" id="input-card-expiration" placeholder="">
+                  <div id="input-card-expiration-err" class="invalid-feedback envio-err ">* Debes ingresar el vencimiento de la tarjeta</div>
+                </div>
+              </div>
+            
+              <label for="card-number-0">Número de la targeta *</label>
+              <div class="credit-card-container ">
+                <div class="card-number-block">
+                  <input type="text" class="form-control card-number is-invalid" id="card-number-0" placeholder="XXXX" min="0000"
+                    max="9999" maxlength="4">
+                </div>
+                <div class="card-number-block">
+                  <input type="text" class="form-control card-number is-invalid" id="card-number-1" placeholder="XXXX" min="0000"
+                    max="9999" maxlength="4">
+                </div>
+                <div class="card-number-block">
+                  <input type="text" class="form-control card-number is-invalid" id="card-number-2" placeholder="XXXX" min="0000"
+                    max="9999" maxlength="4">
+                </div>
+                <div class="card-number-block">
+                  <input type="text" class="form-control card-number is-invalid" id="card-number-3" placeholder="XXXX" min="0000"
+                    max="9999" maxlength="4">
+                </div>
+              </div>
+            
+              <input type="text" class="form-control is-invalid" id="input-input-card-number" placeholder="" style="display: none;">
+              <div id="input-card-number-err" class="invalid-feedback envio-err ">* Debes ingresar correctamente el numero de la tarjeta</div>
+            
+              <br>
+              
+              <div class="form-group">
+                <label for="input-card-code">CVC/CVV (ultimos 3 digitos del reverso) </label>
+                <input type="text" class="form-control is-invalid" id="input-card-code" placeholder="" maxlength="3">
+                <div id="input-card-code-err" class="invalid-feedback envio-err ">* Debes ingresar el CVC/CVV </div>
+              </div>
+            </div>
+
+            <div id="tipo-banco" class="opcion-pago desactivado">
+                <div class="form-group">
+                  <label for="input-banco-titular-name">Titular Cuenta*</label>
+                  <input type="text" class="form-control is-invalid" id="input-banco-titular-name" placeholder="">
+                  <div id="input-banco-titular-name-err" class="invalid-feedback envio-err ">* Debes ingresar el nombre del titular</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input-banco-name">Nombre del Banco *</label>
+                  <input type="text" class="form-control is-invalid" id="input-banco-name" placeholder="">
+                  <div id="input-banco-name-err" class="invalid-feedback envio-err ">* Debes ingresar el nombre del banco</div>
+                </div>
+
+                <div class="form-group">
+                  <label for="input-banco-numero">Número de Cuenta *</label>
+                  <input type="text" class="form-control is-invalid" id="input-banco-numero" placeholder="">
+                  <div id="input-banco-numero-err" class="invalid-feedback envio-err ">* Debes ingresar el numero de cuenta</div>
+                </div>
+            
+            
+
+            </div>
+            
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" id="metodo-pago-validar">Validar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal de compra -->
+<div class="modal fade" id="modal-compra" tabindex="-1" aria-labelledby="modal-compra-label" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-compra-label">Compra Realizada con Exito!!!</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button> -->
+      </div>
+      <div class="modal-body">
+
+        <h4>Detalles de la compra</h4>
+        <br>
+        <h5>Productos</h5>
+        <table class="table table-striped" id="datos-carrito">
+          <thead>
+            <tr>
+              <th scope="col">Producto</th>
+              <th scope="col">Costo</th>
+              <th scope="col">Cant.</th>
+              <th scope="col">Sub-Total</th>
+            </tr>
+          </thead>
+          <tbody id="factura-table-tbody">
+            <tr>
+              <td>producto1</td>
+            </tr>
+            <tr>
+              <td>producto2</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h5>Pago</h5>
+        <table class="table table-striped" id="datos-pago">
+          <tbody id="factura-table-tbody">
+            <tr>
+              <td>Moneda</td>
+              <td id="factura-pago-moneda">moneda</td>
+            </tr>
+            <tr>
+              <td>Sub-total</td>
+              <td id="factura-pago-subtotal">Sub total</td>
+            </tr>
+            <tr>
+              <td>Costo Envio</td>
+              <td id="factura-pago-costo-envio">Costo Envio</td>
+            </tr>
+            <tr>
+              <td>Costo Total</td>
+              <td id="factura-pago-codPostal">Costo Total</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h5>Envio</h5>
+        <table class="table table-striped" id="datos-envio">
+          <tbody id="factura-envio-tbody">
+            <tr>
+              <td>direccion</td>
+              <td id="factura-envio-direccion">direccion</td>
+            </tr>
+            <tr>
+              <td>direccion2</td>
+              <td id="factura-envio-direccion2">direccion2</td>
+            </tr>
+            <tr>
+              <td>pais</td>
+              <td id="factura-envio-pais">pais</td>
+            </tr>
+            <tr>
+              <td>codPostal</td>
+              <td id="factura-envio-codPostal">codPostal</td>
+            </tr>
+            <tr>
+              <td>tipo envio</td>
+              <td id="factura-envio-tipo-envio">tipo envio</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h5 id="datos-metodo-pago-banco-titulo">Metodo Pago Banco</h5>
+        <table class="table table-striped" id="datos-metodo-pago-banco">
+          <tbody id="factura-table-tbody">
+            <tr>
+              <td>Nombre Titular</td>
+              <td id="factura-metodo-pago-titular">Nombre Tuitular</td>
+            </tr>
+            <tr>
+              <td>Nombre Banco</td>
+              <td id="factura-metodo-pago-banco">Nombre Banco</td>
+            </tr>
+            <tr>
+              <td>Cuenta</td>
+              <td id="factura-metodo-pago-cuenta">Cuenta</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h5 id="datos-metodo-pago-tarjeta-titulo">Metodo Pago Tarjeta</h5>
+        <table class="table table-striped" id="datos-metodo-pago-tarjeta">
+          <tbody id="factura-table-tbody">
+            <tr>
+              <td>Nombre</td>
+              <td id="factura-metodo-pago-nombre">Nombre</td>
+            </tr>
+            <tr>
+              <td>Numero</td>
+              <td id="factura-metodo-pago-numero">Numero</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        <a type="button" class="btn btn-primary" href="products.html">Salir</a>
+      </div>
+    </div>
+  </div>
+</div>
 
   <div id="spinner-wrapper">
     <div class="lds-ring">

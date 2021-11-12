@@ -149,8 +149,78 @@ table{
 .comprar-btn{
     width: 200px;
     height: 50px;
+
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.comprar-btn-carrito{
+
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .invalid-feedback.envio-err{
     font-size: medium;
+}
+
+.pago-container{
+
+    display: inline-flex;
+    width: 100%;
+}
+
+.pago-btn-carrito{
+    white-space: nowrap;
+    
+    position: absolute;
+
+    right: 4px;
+    top: 0px;
+
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+
+.text-unselectable{
+    user-select: none;
+}
+
+.modal-header .close span{
+    font-size: 30px !important;
+}
+
+.card-number::-webkit-outer-spin-button,
+.card-number::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.card-number[type=number] {
+    -moz-appearance: textfield;
+}
+
+.credit-card-container{
+    display: flex;
+}
+
+.credit-card-container{
+    display: flex;
+}
+
+.card-number-block:not(:last-child){
+    width: 25%;
+    padding-right: 10px;
+}
+
+.card-number-block:last-child{
+    width: 25%;
+}
+
+.desactivado{
+    display: none;
+}
+
+.table td, .table th {
+    padding: 0.2rem !important;
 }
