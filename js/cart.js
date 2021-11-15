@@ -29,19 +29,7 @@ let input_pais;
 let input_ciudad;
 let input_codPostal;
 let input_envioSeleccionado;
-
-let Existe_direccion = false;
-let Existe_direccion2 = false;
-let Existe_pais = false;
-let Existe_ciudad = false;
-let Existe_codPostal = false;
-let envioSeleccionado = false;
-let metodoPagoSeleccionado = false;
-
-let Err_Existe_direccion;
-let Err_Existe_pais;
-let Err_Existe_ciudad;
-let Err_Existe_codPostal;
+let input_metodoPago;
 
 let datos_completos = false;
 
@@ -49,8 +37,20 @@ let tBodyCarrito = null;
 
 let Actual_CardInput = 0;
 let MetodoPago = {tipo: "invalido"};
+
+let datosCompra = {}
 //al iniciar la pagina
 document.addEventListener("DOMContentLoaded", function (e) {
+
+    input_direccion         = document.querySelector("#input-direccion");
+    input_direccion2        = document.querySelector("#input-direccion2");
+    input_pais              = document.querySelector("#input-pais");
+    input_ciudad            = document.querySelector("#input-ciudad");
+    input_codPostal         = document.querySelector("#input-codPostal");
+    input_envioSeleccionado = document.querySelector('.envio-select');
+    input_metodoPago        = document.querySelector('#input-metodo-pago-ui-dummy');
+    input_metodoPagoUI      = document.querySelector('#input-metodo-pago-ui');
+
     selectedCurrency = document.querySelector('input[name="currency"]:checked').value;
 
     let currency_radios = document.getElementsByName('currency');
@@ -71,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
 
         calc_total()
-        comprobar_btn_comprar();
     })
 
     tBodyCarrito = document.getElementsByClassName('lista-producto')[0];
@@ -86,79 +85,67 @@ document.addEventListener("DOMContentLoaded", function (e) {
     let datos_compra = document.getElementById('datos-compra');
     datos_compra.addEventListener('submit', (e) => {
 
-        if (datos_completos) {
-            /** @type {Article} - description */
-            let productos = jsonCarrito.articles;
-            let products_input = document.getElementsByClassName('input-cant-unidades')
+        // dolar
 
-            let compra = {}
-            compra.articles = [];
+
+        //evito que recargue la pagina
+        e.preventDefault();
+
+        if (check_form_inputs() == 0) {
+
+            //los contadores de cantidad de unidades de los productos
+            let products_input = document.querySelectorAll('.input-cant-unidades');
+
+            datosCompra = {};
+            datosCompra.articles = [];
+
             //listando prpductos
             for (let i = 0; i < jsonCarrito.articles.length; i++) {
                 /** @type {Article} - description */
-                let producto_Actual = productos[i];
+                let producto_Actual = jsonCarrito.articles[i];
                 let producto_input_Actual = products_input[i];
 
-                compra.articles[i] = {
+                datosCompra.articles[i] = {
+                    
                     name: producto_Actual.name,
                     src: producto_Actual.src,
-                    unitCost: producto_Actual.unitCost,
-                    currency: producto_Actual.currency,
+                    unitCost: convert_currency(producto_Actual.unitCost, producto_Actual.currency, selectedCurrency),
+
+                    currency: selectedCurrency,
+
                     count: producto_input_Actual.value,
+
                 }
             }
 
             //datos de envio 
-            compra.direccion = document.getElementById('input-direccion').value;
-            compra.direccion2 = document.getElementById('input-direccion2').value;
-            compra.pais = document.getElementById('input-pais').value;
-            compra.ciudad = document.getElementById('input-ciudad').value;
-            compra.codPostal = document.getElementById('input-codPostal').value;
+            datosCompra.datosEnvio = {};
+            datosCompra.datosEnvio.direccion = input_direccion.value;
+            datosCompra.datosEnvio.direccion2 = input_direccion2.value;
+            datosCompra.datosEnvio.pais = input_pais.value;
+            datosCompra.datosEnvio.ciudad = input_ciudad.value;
+            datosCompra.datosEnvio.codPostal = input_codPostal.value;
+
+            //datos de los costos
+            datosCompra.datosCosto = {};
+            datosCompra.datosCosto.cost_currency = selectedCurrency;
+            datosCompra.datosCosto.cost_sub_total = cost_sub_total;
+            datosCompra.datosCosto.cost_envio = cost_envio;
+            datosCompra.datosCosto.cost_total = cost_total;
+
+            //datos de pago
+            datosCompra.MetodoPago = MetodoPago;
 
             //tipo de envio
-            compra.tipo_envio = document.getElementsByClassName('envio-select')[0].value;
+            datosCompra.tipo_envio = input_envioSeleccionado.value;
 
-            //datos del pago
-            compra.cost_currency = selectedCurrency,
-                compra.cost_sub_total = cost_sub_total,
-                compra.cost_envio = cost_envio,
-                compra.cost_total = cost_total,
+            console.log(datosCompra);
+            llenarDatosCompra();
+            $('#modal-compra').modal('show');
 
-                console.log(compra);
-
-                $('#modal-compra').modal('show');
         }
-        
-        mostrar_errores();
-        e.preventDefault();
-    })
 
-    input_envioSeleccionado =  document.getElementsByClassName('envio-select')[0];
-
-    //les agrego un evento a todos los inputs para disparar la funcion comprobar_btn_comprar 
-    //que habilitara el boton solo si estan todos los campos seleccionados y/o llenos
-    input_direccion = document.getElementById('input-direccion');
-    input_direccion.addEventListener('change', (e) => { comprobar_btn_comprar() });
-
-    input_direccion2 = document.getElementById('input-direccion2');
-    input_direccion2.addEventListener('change', (e) => { comprobar_btn_comprar() });
-
-    input_pais = document.getElementById('input-pais');
-    input_pais.addEventListener('change', (e) => { comprobar_btn_comprar() });
-
-    input_ciudad = document.getElementById('input-ciudad');
-    input_ciudad.addEventListener('change', (e) => { comprobar_btn_comprar() });
-
-    input_codPostal = document.getElementById('input-codPostal');
-    input_codPostal.addEventListener('change', (e) => { comprobar_btn_comprar() });
-
-    Err_Existe_direccion    = document.getElementById('input-direccion-err');;
-    Err_Existe_pais         = document.getElementById('input-pais-err');;
-    Err_Existe_ciudad       = document.getElementById('input-ciudad-err');;
-    Err_Existe_codPostal    = document.getElementById('input-codPostal-err');;
-    
-    //la primera vez lo activo forzosamente porque no hay todavia interaccion del usuario
-    comprobar_btn_comprar();
+    });
 
     let modal_CreditCard_Numbers = document.querySelectorAll(".card-number")
     for (const inputNumber of modal_CreditCard_Numbers) {
@@ -184,6 +171,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     }
 
     start_MetodoDePago();
+
 });
 
 
@@ -359,72 +347,63 @@ function calc_total() {
 
 }
 
-function comprobar_btn_comprar() {
+/** - chequea todos los elementos del form para saber si todos los datos estan bien, antes de confirmar la compra*/
+function check_form_inputs() {
+    let errores = 0;
 
-    // console.log("comprobando boton comprar")
+    errores += check_empty_input(input_direccion)
+    errores += check_empty_input(input_pais)
+    errores += check_empty_input(input_ciudad)
+    errores += check_empty_input(input_codPostal)
 
-    Existe_direccion        = input_direccion.value.trim() != "";
-    Existe_direccion2       = input_direccion2.value.trim() != "";
-    Existe_pais             = input_pais.value.trim() != "";
-    Existe_ciudad           = input_ciudad.value.trim() != "";
-    Existe_codPostal        = input_codPostal.value.trim() != "";
-    envioSeleccionado       = slect_envio != 0;
-    metodoPagoSeleccionado  = MetodoPago.tipo != "invalido";
+    errores += check_empty_radio(input_envioSeleccionado)
 
-    if(Existe_direccion && Existe_pais &&  Existe_ciudad && Existe_codPostal && envioSeleccionado && metodoPagoSeleccionado){
-        datos_completos = true;
-        //document.getElementsByClassName("comprar-btn")[0].disabled = false;
-    }else{
-        datos_completos = false;
-        //document.getElementsByClassName("comprar-btn")[0].disabled = true;  
-    }
+    errores += check_empty_metodoPago(input_metodoPago, input_metodoPagoUI)
+    
+    return errores;
+}
+
+/** - Chequea un input de tipo texto para saber si esta vacio, returnando 1 o 0 y colocando las clases de bootstrap
+ * @param {HTMLElement} HTMLElement - elemento html del input a testear
+ */
+function check_empty_input(HTMLElement) {
+
+    let is_invalid = HTMLElement.value.trim() == "";
+
+    HTMLElement.classList.toggle('is-invalid', is_invalid);
+    HTMLElement.classList.toggle('is-valid', !is_invalid);
+    
+    return is_invalid? 1 : 0;
+}
+
+/** - Chequea un input de tipo Radio para saber si esta seleccionado, returnando 1 o 0 y colocando las clases de bootstrap
+ * @param {HTMLElement} HTMLElement - elemento html del input Radio a testear
+ */
+ function check_empty_radio(HTMLElement) {
+    
+    let is_invalid = HTMLElement.value.trim() == 0;
+
+    HTMLElement.classList.toggle('is-invalid', is_invalid);
+    HTMLElement.classList.toggle('is-valid', !is_invalid);
+    
+    return is_invalid? 1 : 0;
 
 }
 
-function  mostrar_errores() {
+/** - Chequea un input de metodo de pago para saber si se configuro y returnando 1 o 0 y colocando las clases de bootstrap
+ * @param {HTMLElement} HTMLElement - elemento html donde estan los datos del metodo de pago a testear
+ */
+ function check_empty_metodoPago(HTMLElement, HTMLElement2) {
+    
+    let is_invalid = MetodoPago.tipo == "invalido";
 
+    HTMLElement.classList.toggle('is-invalid', is_invalid);
+    HTMLElement.classList.toggle('is-valid', !is_invalid);
+    
+    HTMLElement2.classList.toggle('is-invalid', is_invalid);
+    HTMLElement2.classList.toggle('is-valid', !is_invalid);
 
-    if(!Existe_direccion){
-        input_direccion.classList.add("is-invalid");
-        input_direccion.classList.remove("is-valid");
-    }else{
-        input_direccion.classList.remove("is-invalid");
-        input_direccion.classList.add("is-valid");
-    }
-
-    if(!Existe_pais){
-        input_pais.classList.add("is-invalid");
-        input_pais.classList.remove("is-valid");
-    }else{
-        input_pais.classList.remove("is-invalid");
-        input_pais.classList.add("is-valid");
-    }
-
-    if(!Existe_ciudad){
-        input_ciudad.classList.add("is-invalid");
-        input_ciudad.classList.remove("is-valid");
-    }else{
-        input_ciudad.classList.remove("is-invalid");
-        input_ciudad.classList.add("is-valid");
-    }
-
-    if(!Existe_codPostal){
-        input_codPostal.classList.add("is-invalid");
-        input_codPostal.classList.remove("is-valid");
-    }else{
-        input_codPostal.classList.remove("is-invalid");
-        input_codPostal.classList.add("is-valid");
-    }
-
-    if(!envioSeleccionado){
-        input_envioSeleccionado.classList.add("is-invalid");
-        input_envioSeleccionado.classList.remove("is-valid");
-    }else{
-        input_envioSeleccionado.classList.remove("is-invalid");
-        input_envioSeleccionado.classList.add("is-valid");
-    }
-
-    update_MetodoPago();
+    return is_invalid? 1 : 0;
 }
 
 /** - Elimina el produicto pasado por parametro
@@ -435,6 +414,7 @@ function borrar_producto(producto) {
     jsonCarrito.articles.splice( jsonCarrito.articles.indexOf(producto), 1)
 }
 
+/** - inicializa el sistema del metodo de pago con los eventos y comprobaciones necesarias*/
 function start_MetodoDePago() {
     let select_metodo_pago = document.querySelector('.pago-select');
 
@@ -479,10 +459,8 @@ function check_metodoPago(metodoSeleccionado, listaMetodosHTML) {
         case 0:
             console.log("metodo: tarjeta");
             if(check_metodo_tarjeta(selected_method_html)){
-                console.log("el metodo es valido")
                 $('#pagoModal').modal('hide');
             }else{
-                console.log("el metodo NO es valido")
                 MetodoPago = {};
                 MetodoPago.tipo = "invalido";
             }
@@ -491,10 +469,8 @@ function check_metodoPago(metodoSeleccionado, listaMetodosHTML) {
         case 1:
             console.log("metodo: banco")
             if(check_metodo_banco(selected_method_html)){
-                console.log("el metodo es valido")
                 $('#pagoModal').modal('hide');
             }else{
-                console.log("el metodo NO es valido")
                 MetodoPago = {};
                 MetodoPago.tipo = "invalido";
             }
@@ -632,6 +608,117 @@ function update_MetodoPago() {
         }
     }
 
-    comprobar_btn_comprar()
+}
+
+/** - convierte automaticamente de dolares a pesos segun los parametros
+ * 
+ * @param {*} ValueToConvert - numero a convertir
+ * @param {*} FromCurrency - currency original
+ * @param {*} ToCurrency - currency a la que se va a comvertir
+ * @returns
+ */
+function convert_currency(ValueToConvert, FromCurrency, ToCurrency) {
+    
+    if(FromCurrency != ToCurrency){
+        if(FromCurrency == "UYU" && ToCurrency == "USD"){
+            return ValueToConvert / dolar;
+        }
+
+        if(FromCurrency == "USD" && ToCurrency == "UYU"){
+            return ValueToConvert * dolar;
+        }
+    }
+
+    return ValueToConvert;
+    
+}
+
+function llenarDatosCompra() {
+
+    let factura_table_tbody = document.querySelector('#factura-table-tbody');
+
+    for (const producto of datosCompra.articles) {
+        let tr = document.createElement('tr');
+
+        tr.innerHTML = `
+        <td>${producto.name}</td>
+        <td>${producto.currency} ${producto.unitCost}</td>
+        <td>${producto.count}</td>
+        <td>${producto.currency} ${producto.unitCost * producto.count}</td>
+        `
+
+        factura_table_tbody.appendChild(tr);
+    }
+
+    //Pago
+    let factura_pago_moneda      = document.querySelector('#factura-pago-moneda');
+    let factura_pago_subTotal    = document.querySelector('#factura-pago-subTotal');
+    let factura_pago_costoEnvio  = document.querySelector('#factura-pago-costoEnvio');
+    let factura_pago_costoTotal  = document.querySelector('#factura-pago-costoTotal');
+
+    factura_pago_moneda.textContent     = (datosCompra.datosCosto.cost_currency == "USD"? "Dolar Estadounidense" : "Pesos Uruguayos");
+    factura_pago_subTotal.textContent   = datosCompra.datosCosto.cost_currency + " " + datosCompra.datosCosto.cost_sub_total
+    factura_pago_costoEnvio.textContent = datosCompra.datosCosto.cost_currency + " " + datosCompra.datosCosto.cost_envio
+    factura_pago_costoTotal.textContent = datosCompra.datosCosto.cost_currency + " " + datosCompra.datosCosto.cost_total
+
+    //Envio
+    let factura_envio_direccion  = document.querySelector('#factura-envio-direccion');
+    let factura_envio_direccion2 = document.querySelector('#factura-envio-direccion2');
+    let factura_envio_pais       = document.querySelector('#factura-envio-pais');
+    let factura_envio_codPostal  = document.querySelector('#factura-envio-codPostal');
+    let factura_envio_tipo_envio = document.querySelector('#factura-envio-tipo-envio');
+
+    let envios = [
+        "Envio Invalido",
+        "Premium (2-5 días / costo 15%)",
+        "Express (5-8 días / Costo 7%)",
+        "Standard (12 a 15 días / Costo 5%)"
+    ]
+
+    factura_envio_direccion.textContent  = datosCompra.datosEnvio.direccion;
+    factura_envio_direccion2.textContent = datosCompra.datosEnvio.direccion2;
+    factura_envio_pais.textContent       = datosCompra.datosEnvio.pais;
+    factura_envio_codPostal.textContent  = datosCompra.datosEnvio.codPostal;
+    factura_envio_tipo_envio.textContent = envios[datosCompra.tipo_envio];
+
+    //Metodo Pago Banco
+    let factura_metodo_pago_titular = document.querySelector('#factura-metodo-pago-titular');
+    let factura_metodo_pago_banco   = document.querySelector('#factura-metodo-pago-banco');
+    let factura_metodo_pago_cuenta  = document.querySelector('#factura-metodo-pago-cuenta');
+
+    //Metodo Pago Tarjeta
+    let factura_metodo_pago_nombre = document.querySelector('#factura-metodo-pago-nombre');
+    let factura_metodo_pago_numero = document.querySelector('#factura-metodo-pago-numero');
+
+    let datos_metodo_pago_banco_titulo   = document.querySelector('#datos-metodo-pago-banco-titulo');
+    let datos_metodo_pago_tarjeta_titulo = document.querySelector('#datos-metodo-pago-tarjeta-titulo');
+    let datos_metodo_pago_banco   = document.querySelector('#datos-metodo-pago-banco');
+    let datos_metodo_pago_tarjeta = document.querySelector('#datos-metodo-pago-tarjeta');
+
+    if(datosCompra.MetodoPago.tipo == "banco"){
+        //Enciendo el bloque de banco
+        datos_metodo_pago_banco_titulo.className = "text-muted";
+        datos_metodo_pago_banco.className = "table table-striped";
+        
+        //Apago el bloque de targeta
+        datos_metodo_pago_tarjeta_titulo.className = "text-muted d-none";
+        datos_metodo_pago_tarjeta.className = "table table-striped d-none";
+
+        factura_metodo_pago_titular.textContent = datosCompra.MetodoPago.nombre
+        factura_metodo_pago_banco.textContent = datosCompra.MetodoPago.banco
+        factura_metodo_pago_cuenta.textContent = datosCompra.MetodoPago.cuenta
+    }else{
+        //Enciendo el bloque de targeta
+        datos_metodo_pago_tarjeta_titulo.className = "text-muted";
+        datos_metodo_pago_tarjeta.className = "table table-striped";
+
+        //Apago el bloque de banco
+        datos_metodo_pago_banco_titulo.className = "text-muted d-none";
+        datos_metodo_pago_banco.className = "table table-striped d-none";
+
+        factura_metodo_pago_nombre.textContent = datosCompra.MetodoPago.nombre
+        factura_metodo_pago_numero.textContent = datosCompra.MetodoPago.cardNumber
+    }
+
 
 }

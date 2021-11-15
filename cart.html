@@ -334,9 +334,8 @@
       </div>
       <div class="modal-body">
 
-        <h4>Detalles de la compra</h4>
-        <br>
-        <h5>Productos</h5>
+        <h4 class="text-center">Detalles de la compra</h4>
+        <h5 class="text-muted">Productos</h5>
         <table class="table table-striped" id="datos-carrito">
           <thead>
             <tr>
@@ -347,16 +346,10 @@
             </tr>
           </thead>
           <tbody id="factura-table-tbody">
-            <tr>
-              <td>producto1</td>
-            </tr>
-            <tr>
-              <td>producto2</td>
-            </tr>
           </tbody>
         </table>
 
-        <h5>Pago</h5>
+        <h5 class="text-muted">Pago</h5>
         <table class="table table-striped" id="datos-pago">
           <tbody id="factura-table-tbody">
             <tr>
@@ -365,72 +358,72 @@
             </tr>
             <tr>
               <td>Sub-total</td>
-              <td id="factura-pago-subtotal">Sub total</td>
+              <td id="factura-pago-subTotal">Sub total</td>
             </tr>
             <tr>
               <td>Costo Envio</td>
-              <td id="factura-pago-costo-envio">Costo Envio</td>
+              <td id="factura-pago-costoEnvio">Costo Envio</td>
             </tr>
             <tr>
               <td>Costo Total</td>
-              <td id="factura-pago-codPostal">Costo Total</td>
+              <td id="factura-pago-costoTotal">Costo Total</td>
             </tr>
           </tbody>
         </table>
 
-        <h5>Envio</h5>
+        <h5 class="text-muted">Envio</h5>
         <table class="table table-striped" id="datos-envio">
           <tbody id="factura-envio-tbody">
             <tr>
-              <td>direccion</td>
+              <td>Dirección</td>
               <td id="factura-envio-direccion">direccion</td>
             </tr>
             <tr>
-              <td>direccion2</td>
+              <td>Dirección 2</td>
               <td id="factura-envio-direccion2">direccion2</td>
             </tr>
             <tr>
-              <td>pais</td>
+              <td>País</td>
               <td id="factura-envio-pais">pais</td>
             </tr>
             <tr>
-              <td>codPostal</td>
+              <td>Codigo Postal</td>
               <td id="factura-envio-codPostal">codPostal</td>
             </tr>
             <tr>
-              <td>tipo envio</td>
+              <td>Tipo Envío</td>
               <td id="factura-envio-tipo-envio">tipo envio</td>
             </tr>
           </tbody>
         </table>
 
-        <h5 id="datos-metodo-pago-banco-titulo">Metodo Pago Banco</h5>
+        <h5 id="datos-metodo-pago-banco-titulo" class="text-muted">Metodo Pago (Banco)</h5>
         <table class="table table-striped" id="datos-metodo-pago-banco">
           <tbody id="factura-table-tbody">
             <tr>
-              <td>Nombre Titular</td>
+              <td>Nombre del Titular</td>
               <td id="factura-metodo-pago-titular">Nombre Tuitular</td>
             </tr>
             <tr>
-              <td>Nombre Banco</td>
+              <td>Nombre del Banco</td>
               <td id="factura-metodo-pago-banco">Nombre Banco</td>
             </tr>
             <tr>
-              <td>Cuenta</td>
+              <td>Nº Cuenta</td>
               <td id="factura-metodo-pago-cuenta">Cuenta</td>
             </tr>
           </tbody>
         </table>
 
-        <h5 id="datos-metodo-pago-tarjeta-titulo">Metodo Pago Tarjeta</h5>
+        <h5 id="datos-metodo-pago-tarjeta-titulo" class="text-muted">Metodo Pago (Tarjeta)</h5>
         <table class="table table-striped" id="datos-metodo-pago-tarjeta">
           <tbody id="factura-table-tbody">
             <tr>
-              <td>Nombre</td>
+              <td>Cliente</td>
               <td id="factura-metodo-pago-nombre">Nombre</td>
             </tr>
             <tr>
-              <td>Numero</td>
+              <td>Nº Targeta</td>
               <td id="factura-metodo-pago-numero">Numero</td>
             </tr>
           </tbody>
@@ -453,7 +446,6 @@
       <div></div>
     </div>
   </div>
-
   
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
