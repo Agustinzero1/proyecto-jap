@@ -1,0 +1,112 @@
+[
+    {
+        "id": 1,
+        "ciudad": "Caen",
+        "precio": 58.51
+    },
+    {
+        "id": 2,
+        "ciudad": "Huangmei",
+        "precio": 73.1
+    },
+    {
+        "id": 3,
+        "ciudad": "Hechuan",
+        "precio": 98.02
+    },
+    {
+        "id": 4,
+        "ciudad": "Xingong",
+        "precio": 50.5
+    },
+    {
+        "id": 5,
+        "ciudad": "Xinhua",
+        "precio": 99.79
+    },
+    {
+        "id": 6,
+        "ciudad": "Carandaí",
+        "precio": 96.97
+    },
+    {
+        "id": 7,
+        "ciudad": "Shangxian",
+        "precio": 79.01
+    },
+    {
+        "id": 8,
+        "ciudad": "Shataping",
+        "precio": 52.85
+    },
+    {
+        "id": 9,
+        "ciudad": "Las Vegas",
+        "precio": 97.3
+    },
+    {
+        "id": 10,
+        "ciudad": "Zopilotepe",
+        "precio": 59.65
+    },
+    {
+        "id": 11,
+        "ciudad": "Las Yaras",
+        "precio": 84.18
+    },
+    {
+        "id": 12,
+        "ciudad": "Cikiruh",
+        "precio": 77.24
+    },
+    {
+        "id": 13,
+        "ciudad": "Penitik",
+        "precio": 86
+    },
+    {
+        "id": 14,
+        "ciudad": "Baler Baleagung",
+        "precio": 66.37
+    },
+    {
+        "id": 15,
+        "ciudad": "Tamianglayang",
+        "precio": 66.33
+    },
+    {
+        "id": 16,
+        "ciudad": "Gorzów Wielkopolski",
+        "precio": 93.95
+    },
+    {
+        "id": 17,
+        "ciudad": "Kabukarudi",
+        "precio": 63
+    },
+    {
+        "id": 18,
+        "ciudad": "Mała Wieś",
+        "precio": 86.66
+    },
+    {
+        "id": 19,
+        "ciudad": "Uścimów Stary",
+        "precio": 70.78
+    },
+    {
+        "id": 20,
+        "ciudad": "Zárate",
+        "precio": 59.39
+    },
+    {
+        "id": 21,
+        "ciudad": "montevideo",
+        "precio": "149.99"
+    },
+    {
+        "id": 22,
+        "ciudad": "Buenos Aires",
+        "precio": "20.05"
+    }
+]

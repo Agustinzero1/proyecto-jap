@@ -141,7 +141,19 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             console.log(datosCompra);
             llenarDatosCompra();
-            $('#modal-compra').modal('show');
+            
+            console.log(datosCompra);
+
+            fetch(CART_BUY_URL,
+                {
+                    method: "POST",
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(datosCompra)
+                })
+                .then(function (res) { return res.json(); })
+                .then(function (data) { $('#modal-compra').modal('show'); })
+
+            
 
         }
 

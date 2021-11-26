@@ -1,0 +1,31 @@
+{
+    "articles": [
+        {
+            "name": "Pino de olor para el auto",
+            "src": "img/tree1.jpg",
+            "unitCost": 100,
+            "currency": "UYU",
+            "count": "10"
+        }
+    ],
+    "datosEnvio": {
+        "direccion": "colonia 1845",
+        "direccion2": "ap 401",
+        "pais": "uruguay",
+        "ciudad": "montevideo",
+        "codPostal": "11200"
+    },
+    "datosCosto": {
+        "cost_currency": "UYU",
+        "cost_sub_total": 1000,
+        "cost_envio": 150,
+        "cost_total": 1150
+    },
+    "MetodoPago": {
+        "tipo": "banco",
+        "nombre": "Agustin Parodi",
+        "banco": "Scotiabank",
+        "cuenta": "001-48432927842500"
+    },
+    "tipo_envio": "1"
+}

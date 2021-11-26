@@ -105,7 +105,9 @@ function showProductsList(){
                 htmlContentToAppend += 
                 `<a href="product-info.html" class="card mb-4 custom-card custome-prod-card" ondragstart="return false;" ondrop="return false;">
                     
-                    <img class="card-img-top" src="${product.imgSrc}" alt="${product.description}">
+                    <div class="card-top-img">
+                        <img class="" src="${product.imgSrc}" alt="${product.description}">
+                    </div>
                     
                     <div class="card-body d-flex flex-column">
                         <h4 class="card-title text-success font-weight-bold prod-price-text">${product.currency} ${product.cost.toLocaleString()}</h4>
@@ -115,11 +117,12 @@ function showProductsList(){
                     </div>
                 
                 </a>`
+                
             }
             
 
         }
-        
+
         document.getElementById("prod-list-container").innerHTML = htmlContentToAppend;
     }
 }
