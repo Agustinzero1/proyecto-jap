@@ -357,9 +357,11 @@
             
             htmlContentToAppend += 
                     `<a href="product-info.html" class="card mb-4 custom-card custome-prod-card" ondragstart="return false;" ondrop="return false;">
-                        
-                        <img class="card-img-top" src="${producto.imgSrc}" alt="${producto.description}">
-                        
+
+                        <div class="card-top-img">
+                            <img class="" src="${producto.imgSrc}" alt="${producto.description}">
+                        </div>
+
                         <div class="card-body d-flex flex-column">
                             <h4 class="card-title text-success font-weight-bold prod-price-text">${producto.currency} ${producto.cost.toLocaleString()}</h4>
                             <h5 class="card-title font-weight-normal text-truncate">${producto.name}</h5>

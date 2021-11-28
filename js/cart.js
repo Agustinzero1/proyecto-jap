@@ -9,6 +9,8 @@
  * @property {number} unitCost - costo del producto
  */
 
+let blockClose = false;
+
 /** variables globales */
 let jsonCarrito;
 let dolar = 40;
@@ -84,13 +86,18 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     let datos_compra = document.getElementById('datos-compra');
     datos_compra.addEventListener('submit', (e) => {
-
-        // dolar
-
-
-        //evito que recargue la pagina
+        return false; 
         e.preventDefault();
+    })
 
+    let btn_salir = document.getElementById('btn-salir');
+    btn_salir.addEventListener('click', (e)=>{
+        blockClose = false;
+    })
+
+    let btn_datos_compra = document.getElementById('btn-comprar-id');
+    btn_datos_compra.addEventListener('click', (e) => {
+        e.preventDefault();
         if (check_form_inputs() == 0) {
 
             //los contadores de cantidad de unidades de los productos
@@ -141,9 +148,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             console.log(datosCompra);
             llenarDatosCompra();
-            
-            console.log(datosCompra);
 
+            $('#modal-compra').modal('show');
+
+            blockClose = true;
             fetch(CART_BUY_URL,
                 {
                     method: "POST",
@@ -151,12 +159,18 @@ document.addEventListener("DOMContentLoaded", function (e) {
                     body: JSON.stringify(datosCompra)
                 })
                 .then(function (res) { return res.json(); })
-                .then(function (data) { $('#modal-compra').modal('show'); })
-
-            
+                .then(function (data) {
+                    console.log("post completo")
+                   
+                    //esto fue necesario porque por algun motivo el post me recarga la pagina
+                    alert('compra realizada con exito')
+                    
+                    
+            })
 
         }
-
+        
+        console.log("fin de evento click completo")
     });
 
     let modal_CreditCard_Numbers = document.querySelectorAll(".card-number")
@@ -184,10 +198,21 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     start_MetodoDePago();
 
+ 
+    window.addEventListener("beforeunload", function (e) {
+        if(blockClose){
+            e.returnValue = "\o/";
+        }else{
+            e.preventDefault();
+        }
+        
+    });
+
 });
 
 
 //funciones
+
 
 function esNumero(string) {
    return !Number.isInteger(parseInt(string))
